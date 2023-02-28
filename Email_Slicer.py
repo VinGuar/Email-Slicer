@@ -1,26 +1,28 @@
-emailAddress = input("Enter your email address! ")
+emailAddress = input("Enter your email address! Both Internet and Intranet emails are valid. ")
 
 checker = True
 sign = '@'
-period = '.'
 username = ""
 domain = ""
 counter = 0
-locationOfSign = 0
 
 while True:
-    if sign and period in emailAddress:
-        break
-    else:
-        input("That is not a valid Email Address! Please enter a valid one. ")
-        continue
+    if ((sign in emailAddress) and emailAddress.rfind("@")>0 and (len(emailAddress)-1)>emailAddress.rfind("@")):
+            break
+    else:  
+        emailAddress = input("That is not a valid Email Address! Please enter a valid one. ")
+
+        
+locationOfSign = emailAddress.rfind("@")
 
 while counter<len(emailAddress):
-    if emailAddress[counter] == "@":
+    if counter == locationOfSign:
         counter += 1
     elif counter>locationOfSign:
         domain += emailAddress[counter]
+        counter += 1
     else:
         username += emailAddress[counter]
+        counter += 1
 
-print("Your username is " + username + ". Your domain is " + domain + ". ")
+print("Username: " + username + "      Domain: " + domain)
